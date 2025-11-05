@@ -1,0 +1,367 @@
+/* Reset box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Variables */
+:root {
+  --sidebar-width: 240px;
+  --sidebar-collapsed: 72px;
+  --bg: #ffffff;
+  --border: #eee;
+  --accent: #c1121f;
+  --text: #333;
+  --shadow: rgba(0,0,0,0.05);
+}
+
+/* Toggle (hamburger) bouton — placé en haut à gauche */
+.sidebar-toggle-btn {
+  position: fixed;
+  left: 14px;
+  top: 14px;
+  z-index: 1200;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  display: none; /* visible uniquement sur petits écrans */
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+/* Collapse button for large screens */
+.sidebar-collapse-btn {
+  position: fixed;
+  left: calc(var(--sidebar-width) + 10px);
+  top: 14px;
+  z-index: 1150;
+  background: #fff;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease, left 0.18s ease;
+}
+
+/* rotate quand collapsed */
+.sidebar-collapse-btn.rotated {
+  transform: rotate(180deg);
+}
+
+/* Container principal */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: var(--bg);
+  border-right: 1px solid var(--border);
+  box-shadow: 2px 0 10px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto Slab", serif;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1100;
+  transition: width 0.22s ease, transform 0.25s ease;
+  overflow: hidden;
+}
+
+/* Logo area */
+.sidebar-logo {
+  padding: 18px 14px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.sidebar-logo .logo {
+  width: 56px;
+  height: auto;
+  object-fit: contain;
+}
+
+.sidebar-logo h3 {
+  color: var(--accent);
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Menu */
+.sidebar-menu {
+  padding: 12px 6px;
+  flex: 1;
+  overflow: auto;
+}
+
+/* Menu item */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  margin: 6px 10px;
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+
+.menu-item .icon {
+  font-size: 18px;
+  width: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+.menu-item .label {
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.menu-item:hover {
+  background-color: #f7f7f7;
+}
+
+.menu-item.active {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* Footer */
+.sidebar-footer {
+  padding: 12px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+}
+
+/* ========== COLLAPSED MODE (icons only) ========== */
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed);
+}
+
+.sidebar.collapsed .label,
+.sidebar.collapsed .sidebar-logo h3,
+.sidebar.collapsed .sidebar-footer {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-logo {
+  padding: 18px 8px;
+}
+
+.sidebar.collapsed .menu-item {
+  justify-content: center;
+  padding: 12px 8px;
+  margin: 6px 6px;
+}
+
+/* reposition collapse btn when collapsed */
+.sidebar.collapsed ~ .sidebar-collapse-btn {
+  left: calc(var(--sidebar-collapsed) + 10px);
+}
+
+/* ========== MOBILE / SMALL SCREEN: drawer off-canvas ========== */
+@media (max-width: 999px) {
+  .sidebar-toggle-btn {
+    display: inline-flex;
+  }
+  .sidebar-collapse-btn {
+    display: none;
+  }
+
+  /* par défaut cacher le sidebar (hors écran) */
+  .sidebar {
+    transform: translateX(-110%);
+    width: 280px; /* drawer width */
+  }
+
+  /* lorsque drawer est ouvert */
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* overlay */
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+    z-index: 1090;
+  }
+  .sidebar-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* décaler le toggle (hamburger) pour être visible */
+  .sidebar-toggle-btn {
+    left: 14px;
+    top: 14px;
+  }
+}
+
+/* ========== Large screens tweaks ========== */
+@media (min-width: 1000px) {
+  .sidebar-toggle-btn {
+    display: none;
+  }
+  .sidebar-collapse-btn {
+    display: inline-flex;
+  }
+}
+
+/* Scrollbar léger pour le menu */
+.sidebar-menu::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar-menu::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.08);
+  border-radius: 8px;
+}
+
+/* Accessibility: focus-visible */
+.menu-item:focus-visible {
+  outline: 3px solid rgba(193,18,31,0.18);
+  outline-offset: 2px;
+}
+
+/* small visual polish on hover for large pointers */
+@media (hover: hover) and (pointer: fine) {
+  .menu-item:hover {
+    transform: translateX(2px);
+  }
+}
+/* 🔒 Logout button */
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #c1121f;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 12px 18px;
+  border-top: 1px solid #eee;
+  transition: all 0.3s ease;
+}
+
+.sidebar-logout:hover {
+  background-color: #fce4e4;
+  color: #a50e1a;
+}
+
+.logout-icon {
+  font-size: 18px;
+}
+/* ================================
+   🔴 POPUP DE LOGOUT PROFESSIONNEL
+=================================== */
+.logout-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s ease;
+}
+
+.logout-modal {
+  background: #fff;
+  border-radius: 14px;
+  padding: 30px 40px;
+  width: 380px;
+  max-width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: scaleUp 0.25s ease;
+}
+
+.logout-modal h3 {
+  color: #c1121f;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.logout-modal p {
+  color: #555;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.logout-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cancel-btn,
+.logout-btn {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cancel-btn {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background: #e5e5e5;
+}
+
+.logout-btn {
+  background: #c1121f;
+  color: white;
+}
+
+.logout-btn:hover {
+  background: #a50e1a;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
