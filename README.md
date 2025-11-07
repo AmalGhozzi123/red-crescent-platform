@@ -1,29 +1,60 @@
-# 🩺 Plateforme de Gestion du Croissant Rouge – Comité Beb Bhar
+# 🩺 Red Crescent Management Platform – Beb Bhar Committee
 
-Ce projet a été développé dans le cadre de mes fonctions en tant que **responsable IT du Club Croissant Rouge – Comité Bébé Bhar**.  
-Il s’agit d’une **plateforme web complète** permettant de **gérer les missions humanitaires, les volontaires et les activités du club** de manière moderne, centralisée et efficace.  
+This project was developed as part of my role as **IT Manager of the Red Crescent Club – Beb Bhar Committee**.  
+It is a **comprehensive web platform** designed to **manage humanitarian missions, volunteers, and club activities** in a modern, centralized, and efficient way.
 
-## 🚀 Fonctionnalités principales
+---
 
-- 👥 **Gestion des volontaires** : inscription, activation/désactivation, mise à jour des informations.  
-- 🩹 **Gestion des missions** : création, modification et suppression des missions humanitaires.  
-- 📅 **Calendrier intelligent** : visualisation des missions selon leur état (en cours ou terminées).  
-- 🧩 **Affectation des volontaires** aux missions via un système de statut dynamique (MissionStatus).  
-- 🔐 **Authentification sécurisée** pour l’administrateur via FastAPI et Firebase.  
-- 📨 **Interface moderne** et responsive construite avec **ReactJS** et un **design professionnel**.  
-- ⚙️ **Backend API REST** construit avec **FastAPI** et connecté à **Firebase Firestore**.  
+## 🚀 Key Features
 
-## 🛠️ Technologies utilisées
+- 👥 **Volunteer Management:** registration, activation/deactivation, and profile updates.  
+- 🩹 **Mission Management:** creation, modification, and deletion of humanitarian missions.  
+- 📅 **Smart Calendar:** visualizes missions based on their current status (ongoing or completed).  
+- 🧩 **Volunteer Assignment:** link volunteers to missions via a dynamic **MissionStatus** system.  
+- 🔐 **Secure Authentication** for administrators using FastAPI and Firebase.  
+- 📨 **Modern & responsive interface** built with **ReactJS** and professional UI design.  
+- ⚙️ **RESTful Backend API** built with **FastAPI** and connected to **Firebase Firestore**.  
 
-- **Frontend :** React.js, Tailwind CSS, React Calendar  
-- **Backend :** Python, FastAPI, Firebase Admin SDK  
-- **Base de données :** Google Firestore (NoSQL)  
-- **Authentification :** JWT + Bcrypt  
+---
 
-## ❤️ Objectif du projet
+## 🛠️ Technologies Used
 
-Cette application vise à **faciliter la coordination et la gestion des activités humanitaires locales**,  
-en offrant aux responsables du Croissant Rouge un outil centralisé pour :
-- suivre les missions,  
-- gérer les bénévoles,  
-- et améliorer la communication et la réactivité au sein du comité.
+| Layer | Technologies |
+|-------|---------------|
+| **Frontend** | React.js, Tailwind CSS, React Calendar |
+| **Backend** | Python, FastAPI, Firebase Admin SDK |
+| **Database** | Google Firestore (NoSQL) |
+| **Authentication** | JWT + Bcrypt |
+
+---
+
+## ❤️ Project Goal
+
+This application aims to **facilitate the coordination and management of local humanitarian activities**,  
+by providing Red Crescent administrators with a **centralized tool** to:
+- monitor missions,  
+- manage volunteers,  
+- and improve communication and responsiveness within the committee.  
+
+---
+
+## 📸 Preview (Optional)
+_Add screenshots or a demo link here if you want to showcase the app._
+
+---
+
+## ⚙️ Installation (Optional)
+If you want to run the project locally:
+```bash
+# Clone the repository
+git clone https://github.com/YourUsername/red-crescent-platform.git
+
+# Backend setup
+cd backend
+pip install -r requirements.txt
+uvicorn app:app --reload
+
+# Frontend setup
+cd ../frontend
+npm install
+npm start
