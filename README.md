@@ -1,4 +1,4 @@
-# 🩺 Plateforme de Gestion du Croissant Rouge – Comité Bébé Bhar
+# 🩺 Plateforme de Gestion du Croissant Rouge – Comité Beb Bhar
 
 Ce projet a été développé dans le cadre de mes fonctions en tant que **responsable IT du Club Croissant Rouge – Comité Bébé Bhar**.  
 Il s’agit d’une **plateforme web complète** permettant de **gérer les missions humanitaires, les volontaires et les activités du club** de manière moderne, centralisée et efficace.  
