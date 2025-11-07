@@ -38,12 +38,7 @@ by providing Red Crescent administrators with a **centralized tool** to:
 
 ---
 
-## 📸 Preview (Optional)
-_Add screenshots or a demo link here if you want to showcase the app._
-
----
-
-## ⚙️ Installation (Optional)
+## ⚙️ Installation 
 If you want to run the project locally:
 ```bash
 # Clone the repository
